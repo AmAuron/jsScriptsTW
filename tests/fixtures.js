@@ -14,8 +14,9 @@ function villageRows(v, units) {
     `<tr><td></td><td>in village</td>${other}</tr></tbody>`;
 }
 
-function unitsHtml({ units = DEFAULT_UNITS, villages = [] } = {}) {
-  const head = units.map((u) => `<th><img src="/graphic/unit/unit_${u}.png"></th>`).join('');
+function unitsHtml({ units = DEFAULT_UNITS, villages = [], icons = {} } = {}) {
+  const src = (u) => (Object.prototype.hasOwnProperty.call(icons, u) ? icons[u] : `/graphic/unit/unit_${u}.png`);
+  const head = units.map((u) => `<th><img src="${src(u)}"></th>`).join('');
   return '<html><body><table id="units_table"><thead><tr><th>Village</th><th></th>' + head +
     '</tr></thead>' + villages.map((v) => villageRows(v, units)).join('') + '</table></body></html>';
 }
@@ -24,8 +25,12 @@ function scavHtml(arr) {
   return `<script>\n var x = new ScavengeMassScreen(\n {"a":1},\n ${JSON.stringify(arr)},\n 5\n );</script>`;
 }
 
+function groupMenu(list) {
+  return JSON.stringify({ result: list });
+}
+
 function doc(html) {
   return new JSDOM(html).window.document;
 }
 
-module.exports = { unitsHtml, scavHtml, doc, DEFAULT_UNITS };
+module.exports = { unitsHtml, scavHtml, groupMenu, doc, DEFAULT_UNITS };

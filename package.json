@@ -6,6 +6,9 @@
   "scripts": {
     "test": "node --check defTroopsCounter.js && node --test 'tests/*.test.js'"
   },
+  "engines": {
+    "node": ">=22.22.2"
+  },
   "devDependencies": {
     "jsdom": "30.1.3"
   }

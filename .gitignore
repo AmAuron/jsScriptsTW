@@ -1,1 +1,16 @@
 node_modules/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+id_rsa*
+*.log
+coverage/
+dist/
+build/
+.pytest_cache/
+__pycache__/
+.venv/
+context-summary.md
